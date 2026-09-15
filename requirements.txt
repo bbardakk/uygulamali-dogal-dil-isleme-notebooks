@@ -1,0 +1,20 @@
+# Dependencies for running the companion notebooks.
+#
+# Exact versions every saved notebook output was produced with, on Python 3.12.13.
+# numpy, pandas, scikit-learn and scipy match the book's requirements-chapters.txt.
+#
+#   uv venv --python 3.12 .venv
+#   uv pip install -r requirements.txt
+
+numpy==2.5.2
+pandas==3.0.5
+pyarrow==25.0.1
+scikit-learn==1.9.0
+scipy==1.18.1
+requests==2.34.2
+
+jupyter==1.1.1
+nbconvert==7.17.1
+nbclient==0.11.0
+nbformat==5.11.1
+ipykernel==7.3.0

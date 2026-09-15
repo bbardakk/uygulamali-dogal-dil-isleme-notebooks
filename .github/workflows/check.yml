@@ -1,0 +1,33 @@
+name: Check notebooks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Folder names match the book's chapters
+        run: python3 scripts/check-structure.py
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Executes every notebook top to bottom. Cells that need a local model
+      # server skip themselves when none is running, as they would for a reader.
+      - name: Execute notebooks
+        run: |
+          find en tr -name "*.ipynb" -print0 | while IFS= read -r -d '' nb; do
+            echo "::group::$nb"
+            jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=900 --output /tmp/executed.ipynb "$nb"
+            echo "::endgroup::"
+          done
