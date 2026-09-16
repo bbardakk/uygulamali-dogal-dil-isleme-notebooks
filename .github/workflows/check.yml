@@ -23,8 +23,12 @@ jobs:
         run: pip install -r requirements.txt
 
       # Executes every notebook top to bottom. Cells that need a local model
-      # server skip themselves when none is running, as they would for a reader.
+      # server skip themselves when none is running, as they would for a reader,
+      # and cells marked heavy (large downloads, minutes of training) skip under
+      # ANLP_SKIP_HEAVY=1 so CI checks the code path without the cost.
       - name: Execute notebooks
+        env:
+          ANLP_SKIP_HEAVY: "1"
         run: |
           find en tr -name "*.ipynb" -print0 | while IFS= read -r -d '' nb; do
             echo "::group::$nb"

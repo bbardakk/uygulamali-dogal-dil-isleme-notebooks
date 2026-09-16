@@ -21,6 +21,8 @@ A chapter folder may also hold small data files or helpers that only its noteboo
 | chapter | English | Türkçe |
 |:--|:--|:--|
 | 01 Why NLP, Why Now | [notebook](en/chapters/01-why-nlp-now/01-why-nlp-now.ipynb) | — |
+| 02 Text as Data | [notebook](en/chapters/02-text-as-data/02-text-as-data.ipynb) | — |
+| 03 Embeddings | [notebook](en/chapters/03-embeddings/03-embeddings.ipynb) | — |
 
 ## Running
 
@@ -32,7 +34,9 @@ jupyter lab
 ```
 
 Each notebook states the versions its numbers came from in its first cell. Cells that need a local
-model server (`ollama`) are skipped cleanly when none is running.
+model server (`ollama`) are skipped cleanly when none is running. Cells that download large
+pretrained files or train for minutes check `ANLP_SKIP_HEAVY=1` and skip with a message; CI sets it,
+and the saved outputs in each notebook come from a full run.
 
 ## License
 

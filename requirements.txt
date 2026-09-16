@@ -1,7 +1,8 @@
 # Dependencies for running the companion notebooks.
 #
 # Exact versions every saved notebook output was produced with, on Python 3.12.13.
-# numpy, pandas, scikit-learn and scipy match the book's requirements-chapters.txt.
+# numpy, pandas, scikit-learn and scipy match the book's requirements-chapters.txt;
+# tiktoken and gensim match the versions chapters 2 and 3 name in their status callouts.
 #
 #   uv venv --python 3.12 .venv
 #   uv pip install -r requirements.txt
@@ -12,6 +13,13 @@ pyarrow==25.0.1
 scikit-learn==1.9.0
 scipy==1.18.1
 requests==2.34.2
+matplotlib==3.11.2
+
+# chapter 2
+tiktoken==0.13.0
+
+# chapter 3
+gensim==4.4.0
 
 jupyter==1.1.1
 nbconvert==7.17.1
