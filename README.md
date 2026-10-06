@@ -22,7 +22,7 @@ A chapter folder may also hold small data files or helpers that only its noteboo
 |:--|:--|:--|
 | 01 Why NLP, Why Now | [notebook](en/chapters/01-why-nlp-now/01-why-nlp-now.ipynb) | [notebook](tr/chapters/01-neden-nlp/01-neden-nlp.ipynb) |
 | 02 Text as Data | [notebook](en/chapters/02-text-as-data/02-text-as-data.ipynb) | [notebook](tr/chapters/02-metin-veri/02-metin-veri.ipynb) |
-| 03 Embeddings | [notebook](en/chapters/03-embeddings/03-embeddings.ipynb) | — |
+| 03 Embeddings | [notebook](en/chapters/03-embeddings/03-embeddings.ipynb) | [notebook](tr/chapters/03-gommeler/03-gommeler.ipynb) |
 
 ## Running
 
