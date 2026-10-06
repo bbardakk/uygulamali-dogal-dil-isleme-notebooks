@@ -2,7 +2,8 @@
 #
 # Exact versions every saved notebook output was produced with, on Python 3.12.13.
 # numpy, pandas, scikit-learn and scipy match the book's requirements-chapters.txt;
-# tiktoken and gensim match the versions chapters 2 and 3 name in their status callouts.
+# tiktoken, sentencepiece, tokenizers and gensim match the versions chapters 2 and 3 name
+# in their status callouts.
 #
 #   uv venv --python 3.12 .venv
 #   uv pip install -r requirements.txt
@@ -17,6 +18,8 @@ matplotlib==3.11.2
 
 # chapter 2
 tiktoken==0.13.0
+sentencepiece==0.2.2
+tokenizers==0.22.2
 
 # chapter 3
 gensim==4.4.0
