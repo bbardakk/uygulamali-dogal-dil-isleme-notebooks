@@ -25,6 +25,7 @@ A chapter folder may also hold small data files or helpers that only its noteboo
 | 03 Embeddings | [notebook](en/chapters/03-embeddings/03-embeddings.ipynb) | [notebook](tr/chapters/03-gommeler/03-gommeler.ipynb) |
 | 04 A Representation Bake-Off | [notebook](en/chapters/04-bake-off/04-bake-off.ipynb) | [notebook](tr/chapters/04-karsilastirma/04-karsilastirma.ipynb) |
 | 05 Data, Annotation, and Ground Truth | [notebook](en/chapters/05-data-annotation/05-data-annotation.ipynb) | [notebook](tr/chapters/05-veri-etiketleme/05-veri-etiketleme.ipynb) |
+| 08 Pretraining and the Model Landscape (subword tokenization section) | [notebook](en/chapters/08-pretraining-landscape/08-pretraining-landscape.ipynb) | [notebook](tr/chapters/08-on-egitim/08-on-egitim.ipynb) |
 
 ## Running
 
