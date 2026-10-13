@@ -7,31 +7,46 @@ on:
   workflow_dispatch:
 
 jobs:
-  check:
+  list:
     runs-on: ubuntu-latest
+    outputs:
+      notebooks: ${{ steps.find.outputs.notebooks }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Folder names match the book's chapters
+        run: python3 scripts/check-structure.py
+
+      - name: List the notebooks
+        id: find
+        run: |
+          echo "notebooks=$(find en tr -name '*.ipynb' | sort | python3 -c 'import json, sys; print(json.dumps(sys.stdin.read().split()))')" >> "$GITHUB_OUTPUT"
+
+  # One job per notebook, so the run takes as long as the slowest notebook and
+  # not as long as all of them in a row (an hour, once chapters 4 and 5 arrived).
+  check:
+    needs: list
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        notebook: ${{ fromJSON(needs.list.outputs.notebooks) }}
     steps:
       - uses: actions/checkout@v7
 
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
-
-      - name: Folder names match the book's chapters
-        run: python3 scripts/check-structure.py
+          cache: pip
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Executes every notebook top to bottom. Cells that need a local model
+      # Executes the notebook top to bottom. Cells that need a local model
       # server skip themselves when none is running, as they would for a reader,
       # and cells marked heavy (large downloads, minutes of training) skip under
       # ANLP_SKIP_HEAVY=1 so CI checks the code path without the cost.
-      - name: Execute notebooks
+      - name: Execute the notebook
         env:
           ANLP_SKIP_HEAVY: "1"
-        run: |
-          find en tr -name "*.ipynb" -print0 | while IFS= read -r -d '' nb; do
-            echo "::group::$nb"
-            jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=900 --output /tmp/executed.ipynb "$nb"
-            echo "::endgroup::"
-          done
+        run: jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=900 --output /tmp/executed.ipynb "${{ matrix.notebook }}"
